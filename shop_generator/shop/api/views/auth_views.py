@@ -86,6 +86,9 @@ def updateShopOwnerProfile(request):
     user = request.user  # Get the logged-in user
     data = request.data
 
+    if user != request.user:
+        return Response({"message": "You can only update your own profile."}, status=status.HTTP_403_FORBIDDEN)
+
     # Validate the request data to ensure username, email, and password are provided
     if not ('username' in data or 'email' in data or 'password' in data):
         return Response({"error": "Empty request, no fields to update."}, status=400)

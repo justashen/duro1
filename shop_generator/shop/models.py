@@ -9,14 +9,14 @@ class Category(models.Model):
         return self.name
 
 
-class SupplierProfile(models.Model):
+class ShopOwnerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Link to User model
     phone = models.CharField(max_length=20)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - Supplier Profile"
+        return f"{self.user.username} - Shop owner profile"
 
 
 class Shop(models.Model):
@@ -31,7 +31,7 @@ class Shop(models.Model):
     youtube = models.URLField(null=True, blank=True)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
-    supplier = models.ForeignKey(SupplierProfile, on_delete=models.CASCADE)  # Link to SupplierProfile
+    shop_owner = models.ForeignKey(ShopOwnerProfile, on_delete=models.CASCADE)  # Link to ShopOwnerProfile
 
     def __str__(self):
         return self.name

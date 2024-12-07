@@ -1,29 +1,28 @@
 from django.urls import path
-from .views import (
-    getCategories,
-    addCategory,
-    getProducts,
-    addProduct,
-    getShops,
-    addShop,
-    getSupplierProfiles,
-    addSupplierProfile,
+from shop.api.views import (
+    registerShopOwner, loginShopOwner, logoutShopOwner,updateShopOwnerProfile,delete_shop_owner,
+    listShops, createShop,
+    listProducts, createProduct,
+    listCategories, createCategory,
 )
 
 urlpatterns = [
-    # Categories
-    path('categories/', getCategories, name='get_categories'),
-    path('categories/add/', addCategory, name='add_category'),
+    # Authentication endpoints
+    path('auth/register/', registerShopOwner, name='register-shop-owner'),
+    path('auth/login/', loginShopOwner, name='login-shop-owner'),
+    path('auth/logout/', logoutShopOwner, name='logout-shop-owner'),
+    path('auth/update-profile/', updateShopOwnerProfile, name='update-shop-owner-profile'),
+    path('auth/delete-profile/', delete_shop_owner, name='delete-shop-owner'),
 
-    # Products
-    path('products/', getProducts, name='get_products'),
-    path('products/add/', addProduct, name='add_product'),
+    # Shop endpoints
+    path('shops/', listShops, name='list-shops'),
+    path('shops/create/', createShop, name='create-shop'),
 
-    # Shops
-    path('shops/', getShops, name='get_shops'),
-    path('shops/add/', addShop, name='add_shop'),
+    # Product endpoints
+    path('products/', listProducts, name='list-products'),
+    path('products/create/', createProduct, name='create-product'),
 
-    # Supplier Profiles
-    path('supplier-profiles/', getSupplierProfiles, name='get_supplier_profiles'),
-    path('supplier-profiles/add/', addSupplierProfile, name='add_supplier_profile'),
+    # Category endpoints
+    path('categories/', listCategories, name='list-categories'),
+    path('categories/create/', createCategory, name='create-category'),
 ]

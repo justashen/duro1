@@ -1,18 +1,18 @@
 from rest_framework import serializers
-from ..models import Category, Shop, Product, SupplierProfile
+from ..models import Category, Shop, Product, ShopOwnerProfile
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'  # Include all fields from the Category model
 
-class SupplierProfileSerializer(serializers.ModelSerializer):
+class ShopOwnerProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SupplierProfile
+        model = ShopOwnerProfile
         fields = '__all__'
 
 class ShopSerializer(serializers.ModelSerializer):
-    supplier = SupplierProfileSerializer()  # Nested Serializer
+    supplier = ShopOwnerProfileSerializer()  # Nested Serializer
 
     class Meta:
         model = Shop

@@ -3,7 +3,11 @@ from django.contrib.auth.models import User  # Import Django's built-in User mod
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
+    shop_owner = models.ForeignKey('ShopOwnerProfile', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('name', 'shop_owner')  # Ensure unique names per shop owner
 
     def __str__(self):
         return self.name
@@ -31,6 +35,7 @@ class Shop(models.Model):
     youtube = models.URLField(null=True, blank=True)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
+    domain_name = models.CharField(max_length=255, unique=True)
     shop_owner = models.ForeignKey(ShopOwnerProfile, on_delete=models.CASCADE)  # Link to ShopOwnerProfile
 
     def __str__(self):
@@ -43,11 +48,11 @@ class Product(models.Model):
     original_price = models.DecimalField(max_digits=10, decimal_places=2)
     sale_price = models.DecimalField(max_digits=10, decimal_places=2)
     updated_at = models.DateTimeField(auto_now=True)
-    product_code = models.CharField(max_length=20, unique=True)
+    # product_code = models.CharField(max_length=20, unique=True)
     out_of_stock = models.BooleanField(default=False)
     image = models.ImageField(upload_to='product_images/%Y/%m/%d/')  # Organized by date
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    shops = models.ManyToManyField(Shop)
+    category = models.ManyToManyField(Category) 
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

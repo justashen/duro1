@@ -1,9 +1,9 @@
 from django.urls import path
 from shop.api.views import (
     registerShopOwner, loginShopOwner, logoutShopOwner,updateShopOwnerProfile,delete_shop_owner,
-    listShops, createShop,
-    listProducts, createProduct,
-    listCategories, createCategory,
+    listShops, createShop, viewshopDetail,shopDetail,
+    createProduct, productHandler,
+    listCategories, createCategory,categoryDetail,
 )
 
 urlpatterns = [
@@ -17,12 +17,16 @@ urlpatterns = [
     # Shop endpoints
     path('shops/', listShops, name='list-shops'),
     path('shops/create/', createShop, name='create-shop'),
+    path('shops/<int:shop_id>/', shopDetail, name='view-shop-detail'),
+    path('shops/view/<int:shop_id>/', viewshopDetail, name='view-shop-detail'),
 
     # Product endpoints
-    path('products/', listProducts, name='list-products'),
+    # path('products/', listProducts, name='list-products'),
+    path('products/<int:product_id>/', productHandler, name='product-handler'),
     path('products/create/', createProduct, name='create-product'),
 
     # Category endpoints
     path('categories/', listCategories, name='list-categories'),
     path('categories/create/', createCategory, name='create-category'),
+    path('categories/<int:category_id>/', categoryDetail, name='category-detail'),
 ]

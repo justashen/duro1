@@ -4,7 +4,7 @@ from ..models import Category, Shop, Product, ShopOwnerProfile
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'  # Include all fields from the Category model
+        fields = ['id', 'name']
 
 class ShopOwnerProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,16 +12,16 @@ class ShopOwnerProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ShopSerializer(serializers.ModelSerializer):
-    supplier = ShopOwnerProfileSerializer()  # Nested Serializer
+    # shopOwner = ShopOwnerProfileSerializer()  # Nested Serializer
 
     class Meta:
         model = Shop
-        fields = '__all__'
+        exclude = ['shop_owner']
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = CategorySerializer()  # Nested Serializer
-    shops = ShopSerializer(many=True)  # Nested Serializer for related shops
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(), many=True)
 
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['id','name', 'visibility', 'original_price', 'sale_price', 'product_code', 'out_of_stock', 'category', 'shop']
+    

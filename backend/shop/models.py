@@ -2,17 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User  # Import Django's built-in User model
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    shop_owner = models.ForeignKey('ShopOwnerProfile', on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('name', 'shop_owner')  # Ensure unique names per shop owner
-
-    def __str__(self):
-        return self.name
-
-
 class ShopOwnerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Link to User model
     # phone = models.CharField(max_length=20)
@@ -52,7 +41,6 @@ class Product(models.Model):
     out_of_stock = models.BooleanField(default=False)
     image = models.ImageField(upload_to='product_images/%Y/%m/%d/')  # Organized by date
     description = models.CharField(max_length=255)
-    category = models.ManyToManyField(Category) 
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
 
     def __str__(self):

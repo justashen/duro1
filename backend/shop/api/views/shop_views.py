@@ -2,8 +2,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
-from shop.models import Shop
-from shop.api.serializers import ShopSerializer
+from shop.models import Shop,Product
+from shop.api.serializers import ShopSerializer,ProductSerializer
 from django.db import IntegrityError
 
 
@@ -58,14 +58,24 @@ def shopDetail(request, shop_id):
         return Response({"message": "Shop deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
 # Retrieve a specific shop
-@permission_classes([AllowAny])
+@permission_classes([AllowAny])  # Publicly accessible
 @api_view(['GET'])
 def viewshopDetail(request, shop_id):
     try:
-        # Ensure the shop belongs to the authenticated user
+        # Ensure the shop exists
         shop = Shop.objects.get(id=shop_id)
+        
+        # Fetch the products related to this shop
+        products = Product.objects.filter(shop=shop, visibility=True)  # Only visible products
     except Shop.DoesNotExist:
         return Response({"error": "Shop not found"}, status=status.HTTP_404_NOT_FOUND)
 
-    serializer = ShopSerializer(shop)
-    return Response(serializer.data)
+    # Serialize shop and products data
+    shop_serializer = ShopSerializer(shop)
+    products_serializer = ProductSerializer(products, many=True)
+
+    # Include the serialized products data in the response
+    response_data = shop_serializer.data
+    response_data['products'] = products_serializer.data  # Add products to the response
+
+    return Response(response_data)

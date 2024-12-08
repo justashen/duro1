@@ -26,14 +26,18 @@
 		"@react-aria/ssr": "3.9.7",
 		"@react-aria/visually-hidden": "3.8.18",
 		"axios": "^1.7.9",
-		"clsx": "2.1.1",
-		"framer-motion": "11.13.1",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"framer-motion": "^11.13.1",
 		"intl-messageformat": "^10.5.0",
 		"lucide-react": "^0.468.0",
 		"next": "15.0.4",
 		"next-themes": "^0.4.4",
 		"react": "18.3.1",
-		"react-dom": "18.3.1"
+		"react-dom": "18.3.1",
+		"react-icons": "^5.4.0",
+		"tailwind-merge": "^2.5.5",
+		"tailwindcss-animate": "^1.0.7"
 	},
 	"devDependencies": {
 		"@next/eslint-plugin-next": "15.0.4",
@@ -43,7 +47,7 @@
 		"@types/react-dom": "18.3.0",
 		"@typescript-eslint/eslint-plugin": "8.11.0",
 		"@typescript-eslint/parser": "8.11.0",
-		"autoprefixer": "10.4.19",
+		"autoprefixer": "^10.4.20",
 		"eslint": "^8.57.0",
 		"eslint-config-next": "15.0.4",
 		"eslint-config-prettier": "9.1.0",
@@ -54,10 +58,10 @@
 		"eslint-plugin-react": "^7.23.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-unused-imports": "4.1.4",
-		"postcss": "8.4.49",
+		"postcss": "^8.4.49",
 		"prettier": "3.3.3",
 		"tailwind-variants": "0.1.20",
-		"tailwindcss": "3.4.16",
+		"tailwindcss": "^3.4.16",
 		"typescript": "5.6.3"
 	}
 }

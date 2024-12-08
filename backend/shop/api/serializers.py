@@ -1,11 +1,6 @@
 from rest_framework import serializers
 from ..models import Category, Shop, Product, ShopOwnerProfile
 
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['id', 'name']
-
 class ShopOwnerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShopOwnerProfile

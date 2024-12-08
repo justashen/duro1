@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Category, Shop, Product, ShopOwnerProfile
+from ..models import Shop, Product, ShopOwnerProfile
 
 class ShopOwnerProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,9 +14,7 @@ class ShopSerializer(serializers.ModelSerializer):
         exclude = ['shop_owner']
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(), many=True)
-
     class Meta:
         model = Product
-        fields = ['id','name', 'visibility', 'original_price','image', 'sale_price', 'out_of_stock', 'category', 'shop']
+        fields = ['id','name', 'visibility', 'original_price','image', 'sale_price', 'out_of_stock', 'shop']
     

@@ -51,6 +51,7 @@ class Product(models.Model):
     # product_code = models.CharField(max_length=20, unique=True)
     out_of_stock = models.BooleanField(default=False)
     image = models.ImageField(upload_to='product_images/%Y/%m/%d/')  # Organized by date
+    description = models.CharField(max_length=255)
     category = models.ManyToManyField(Category) 
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
 

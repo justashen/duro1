@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
-from shop.models import Product, Shop, Category
+from shop.models import Product, Shop
 from shop.api.serializers import ProductSerializer
 
 
@@ -20,14 +20,6 @@ def createProduct(request):
                 # Ensure the shop belongs to the authenticated user
                 shop = Shop.objects.get(id=request.data['shop'], shop_owner=request.user.shopownerprofile)
                 
-                # Ensure all categories belong to the shop owner
-                categories = request.data.get('category', [])
-                for category_id in categories:
-                    if not Category.objects.filter(id=category_id, shop_owner=request.user.shopownerprofile).exists():
-                        return Response(
-                            {"error": f"Category ID {category_id} does not belong to this shop owner."},
-                            status=status.HTTP_403_FORBIDDEN
-                        )
 
                 # Save the product with the shop association
                 serializer.save(shop=shop)
@@ -66,16 +58,6 @@ def productHandler(request, product_id=None):
 
         try:
             product = Product.objects.get(id=product_id, shop__shop_owner=request.user.shopownerprofile)
-            
-            # Ensure all categories belong to the shop owner
-            categories = request.data.get('category', [])
-            if categories:  # Only check categories if provided
-                for category_id in categories:
-                    if not Category.objects.filter(id=category_id, shop_owner=request.user.shopownerprofile).exists():
-                        return Response(
-                            {"error": f"Category ID {category_id} does not belong to this shop owner."},
-                            status=status.HTTP_403_FORBIDDEN
-                        )
 
             # Update the product
             serializer = ProductSerializer(product, data=request.data, partial=True)

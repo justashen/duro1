@@ -31,10 +31,12 @@ def registerShopOwner(request):
         user = User.objects.create_user(
             username=data['username'],
             password=data['password'],
-            email=data['email']
+            email=data['email'],
+            first_name=data.get('first_name',''),
+            last_name=data.get('last_name','')
         )
         # Create the ShopOwner profile
-        ShopOwnerProfile.objects.create(user=user, phone=data.get('phone', ''))
+        ShopOwnerProfile.objects.create(user=user)
         
         # Generate tokens
         tokens = get_tokens_for_user(user)
@@ -86,13 +88,6 @@ def updateShopOwnerProfile(request):
     user = request.user  # Get the logged-in user
     data = request.data
 
-    if user != request.user:
-        return Response({"message": "You can only update your own profile."}, status=status.HTTP_403_FORBIDDEN)
-
-    # Validate the request data to ensure username, email, and password are provided
-    if not ('username' in data or 'email' in data or 'password' in data):
-        return Response({"error": "Empty request, no fields to update."}, status=400)
-
     # Update username if provided
     if 'username' in data:
         user.username = data['username']
@@ -100,6 +95,13 @@ def updateShopOwnerProfile(request):
     # Update email if provided
     if 'email' in data:
         user.email = data['email']
+        
+    if 'first_name' in data:
+        user.first_name = data['first_name']
+        
+    if 'last_name' in data:
+        user.last_name = data['last_name']
+        
 
     # Update password if provided
     if 'password' in data:

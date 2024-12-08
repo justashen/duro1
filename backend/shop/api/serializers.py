@@ -10,7 +10,7 @@ class ShopOwnerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShopOwnerProfile
         fields = '__all__'
-
+    
 class ShopSerializer(serializers.ModelSerializer):
     # shopOwner = ShopOwnerProfileSerializer()  # Nested Serializer
 

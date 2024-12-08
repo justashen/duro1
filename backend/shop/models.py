@@ -15,7 +15,7 @@ class Category(models.Model):
 
 class ShopOwnerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Link to User model
-    phone = models.CharField(max_length=20)
+    # phone = models.CharField(max_length=20)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

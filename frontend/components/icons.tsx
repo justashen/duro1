@@ -2,25 +2,91 @@ import * as React from "react";
 
 import { IconSvgProps } from "@/types";
 
-export const Logo: React.FC<IconSvgProps> = ({
-  size = 36,
+export const Logo = ({
+  size = 22,
   width,
-  height,
-  ...props
+}: {
+  size?: number;
+  width?: number;
 }) => (
   <svg
     fill="none"
-    height={size || height}
-    viewBox="0 0 32 32"
+    height={size || width}
+    viewBox="0 0 37 32"
     width={size || width}
-    {...props}
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      clipRule="evenodd"
-      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-      fill="currentColor"
-      fillRule="evenodd"
-    />
+    <g filter="url(#filter0_b_1712_2177)">
+      <path
+        d="M11.423 11.938v6.232c-.94-.324-1.864-.383-2.796-.078-1.926.63-3.069 2.652-2.631 4.662.414 1.906 2.29 3.299 4.19 3.11 2.118-.212 3.689-1.864 3.691-3.92.007-6.243.001-12.487.003-18.73 0-1.432.721-2.579 1.89-3.026 1.892-.724 3.883.73 3.886 2.857.007 4.193.002 8.385.002 12.578 0 2.127.003 4.254 0 6.38a10.004 10.004 0 0 1-8.722 9.924c-3.782.493-7.72-1.555-9.63-5.009-2.082-3.76-1.658-8.386 1.153-11.645 2.344-2.72 5.357-3.771 8.964-3.335"
+        fill="url(#paint0_linear_1712_2177)"
+      />
+      <path
+        d="M17.365 31.715c.374-.255.68-.444.965-.662 2.58-1.97 3.747-4.626 3.757-7.828.012-4.008-.01-8.016.024-12.024.013-1.6 1.39-2.846 3.01-2.83 1.622.016 2.973 1.285 2.98 2.877.02 3.901.05 7.803-.008 11.704-.057 3.816-2.43 7.217-5.843 8.52-1.557.593-3.157.66-4.884.243"
+        fill="url(#paint1_linear_1712_2177)"
+      />
+      <path
+        d="M25.452 31.558c1.776-.775 3.144-1.9 4.07-3.529a7.3 7.3 0 0 0 .956-3.724c-.008-1.484.052-2.97-.018-4.45-.091-1.946 1.814-3.486 3.896-2.932 1.342.357 2.18 1.474 2.178 2.868-.002 1.576.078 3.157-.03 4.726-.242 3.472-2.649 6.26-6.064 7.158a9 9 0 0 1-4.668.001c-.086-.023-.168-.061-.32-.118"
+        fill="url(#paint2_linear_1712_2177)"
+      />
+    </g>
+    <defs>
+      <linearGradient
+        gradientUnits="userSpaceOnUse"
+        id="paint0_linear_1712_2177"
+        x1="6.914"
+        x2="26.512"
+        y1="18.25"
+        y2="22.507"
+      >
+        <stop stopColor="#fff" />
+        <stop offset="1" stopColor="#F2F3F7" />
+      </linearGradient>
+      <linearGradient
+        gradientUnits="userSpaceOnUse"
+        id="paint1_linear_1712_2177"
+        x1="21.15"
+        x2="32.099"
+        y1="21.836"
+        y2="23.6"
+      >
+        <stop stopColor="#fff" />
+        <stop offset="1" stopColor="#F2F3F7" />
+      </linearGradient>
+      <linearGradient
+        gradientUnits="userSpaceOnUse"
+        id="paint2_linear_1712_2177"
+        x1="29.359"
+        x2="40.227"
+        y1="25.463"
+        y2="28.276"
+      >
+        <stop stopColor="#fff" />
+        <stop offset="1" stopColor="#F2F3F7" />
+      </linearGradient>
+      <filter
+        colorInterpolationFilters="sRGB"
+        filterUnits="userSpaceOnUse"
+        height="73.8"
+        id="filter0_b_1712_2177"
+        width="78.361"
+        x="-20.9"
+        y="-20.9"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feGaussianBlur in="BackgroundImageFix" stdDeviation="10.45" />
+        <feComposite
+          in2="SourceAlpha"
+          operator="in"
+          result="effect1_backgroundBlur_1712_2177"
+        />
+        <feBlend
+          in="SourceGraphic"
+          in2="effect1_backgroundBlur_1712_2177"
+          result="shape"
+        />
+      </filter>
+    </defs>
   </svg>
 );
 

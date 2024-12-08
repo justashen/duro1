@@ -26,7 +26,7 @@ class ShopOwnerProfile(models.Model):
 class Shop(models.Model):
     name = models.CharField(max_length=100)
     title = models.CharField(max_length=255)
-    search = models.TextField(null=True, blank=True)  # Optional field
+    search = models.BooleanField(default=False)
     address = models.TextField()
     description = models.TextField()
     facebook = models.URLField(null=True, blank=True)

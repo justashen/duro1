@@ -4,5 +4,7 @@
 
 # Django .gitignore
 /venv
+/venv/
+venvx/
 *.pyc
 __pycache__/

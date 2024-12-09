@@ -4,8 +4,16 @@ from shop.api.views import (
     listShops, createShop, viewshopDetail,shopDetail,
     createProduct, productHandler,
 )
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+from django.urls import path
 
 urlpatterns = [
+    # tocken
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # Authentication endpoints
     path('auth/register/', registerShopOwner, name='register-shop-owner'),
     path('auth/login/', loginShopOwner, name='login-shop-owner'),

@@ -15,7 +15,9 @@ export default function App() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData.entries());
+    const response = await axios.post(`/api/auth/login/`, data);
 
+      console.log("Sign in Response:", response.data);
     try {
     } catch (error) {
       console.error("Login Error:", error);
@@ -71,6 +73,7 @@ export default function App() {
                   name="password"
                   placeholder="Enter your password"
                   type="password"
+                  autoComplete="true"
                 />
                 <p className="text-center text-small">
                   Need to create an account?{" "}
@@ -124,6 +127,7 @@ export default function App() {
                   name="password"
                   placeholder="Enter your password"
                   type="password"
+                  autoComplete="true"
                 />
                 <p className="text-center text-small">
                   Already have an account?{" "}

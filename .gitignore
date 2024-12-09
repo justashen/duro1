@@ -1,0 +1,8 @@
+# Next.js .gitignore
+/node_modules
+.next/
+
+# Django .gitignore
+/venv
+*.pyc
+__pycache__/
